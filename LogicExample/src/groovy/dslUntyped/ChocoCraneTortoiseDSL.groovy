@@ -1,13 +1,13 @@
 package dslUntyped
 
 import groovy.transform.Field
-import Solver
-import IntVar
+import solver.Solver
+import solver.variables.IntVar
 
-import static IntConstraintFactory.scalar
-import static IntStrategyFactory.lexico_LB
-import static VariableFactory.bounded
-import static VariableFactory.fixed
+import static solver.constraints.IntConstraintFactory.scalar
+import static solver.search.strategy.IntStrategyFactory.lexico_LB
+import static solver.variables.VariableFactory.bounded
+import static solver.variables.VariableFactory.fixed
 
 @Field legCount = [:]
 @Field total = [:]
@@ -43,13 +43,13 @@ def display(_solution) {
   def s = new Solver()
   IntVar[] animalVars = legCount.collect { a, n ->
     int maxAnimals = total.legs.intdiv(n)
-    solver.variables.VariableFactory.bounded(a, 0, maxAnimals, s)
+    bounded(a, 0, maxAnimals, s)
   }
   int[] numCoeff = [1] * legCount.size()
   int[] legCoeff = legCount.collect { it.value }
-  s.post(solver.constraints.IntConstraintFactory.scalar(animalVars, numCoeff, fixed(total.animals, s)))
-  s.post(solver.constraints.IntConstraintFactory.scalar(animalVars, legCoeff, fixed(total.legs, s)))
-  s.set(solver.search.strategy.IntStrategyFactory.lexico_LB(animalVars))
+  s.post(scalar(animalVars, numCoeff, fixed(total.animals, s)))
+  s.post(scalar(animalVars, legCoeff, fixed(total.legs, s)))
+  s.set(lexico_LB(animalVars))
 
   if (s.findSolution())
     animalVars.each { println it }

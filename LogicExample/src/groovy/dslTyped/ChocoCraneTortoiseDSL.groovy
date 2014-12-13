@@ -8,12 +8,12 @@ package dslTyped
 import groovy.transform.Field
 import groovy.transform.TypeChecked
 
-import Solver
-import IntVar
+import solver.Solver
+import solver.variables.IntVar
 
-import static IntConstraintFactory.*
-import static IntStrategyFactory.lexico_LB
-import static VariableFactory.*
+import static solver.constraints.IntConstraintFactory.*
+import static solver.search.strategy.IntStrategyFactory.lexico_LB
+import static solver.variables.VariableFactory.*
 
 @Field List<Animal> _animals = []
 @Field List<Integer> headCount = []
@@ -70,13 +70,13 @@ def display(SolutionStopWord _solution) {
 
   IntVar[] animalVars = _animals.collect{
     int maxAnimals = legCount[0].intdiv(it.legs)
-    solver.variables.VariableFactory.bounded(it.toString(), 0, maxAnimals, s)
+    bounded(it.toString(), 0, maxAnimals, s)
   }
   int[] numCoeff = [1] * _animals.size()
   int[] legCoeff = _animals.collect{ it.legs }
-  s.post(solver.constraints.IntConstraintFactory.scalar(animalVars, numCoeff, solver.variables.VariableFactory.fixed(headCount[0], s)))
-  s.post(solver.constraints.IntConstraintFactory.scalar(animalVars, legCoeff, solver.variables.VariableFactory.fixed(legCount[0], s)))
-  s.set(solver.search.strategy.IntStrategyFactory.lexico_LB(animalVars))
+  s.post(scalar(animalVars, numCoeff, fixed(headCount[0], s)))
+  s.post(scalar(animalVars, legCoeff, fixed(legCount[0], s)))
+  s.set(lexico_LB(animalVars))
 
   def more = s.findSolution()
   def pretty = { it.value ? ["$it.name = $it.value"] : [] }
