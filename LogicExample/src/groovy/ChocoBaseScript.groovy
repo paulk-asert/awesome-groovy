@@ -1,12 +1,16 @@
+//@Grab('org.choco-solver:choco-solver:3.3.1')
+//@Grab('org.slf4j:slf4j-simple:1.7.12')
+//@GrabExclude('org.javabits.jgrapht:jgrapht-core')
+//@GrabExclude('args4j:args4j')
+//@GrabExclude('dk.brics.automaton:automaton')
 
+import org.chocosolver.solver.Solver
+import org.chocosolver.solver.constraints.Constraint
+import org.chocosolver.solver.constraints.IntConstraintFactory
+import org.chocosolver.solver.variables.IntVar
+import org.chocosolver.solver.variables.VariableFactory
 
-import solver.Solver
-import solver.constraints.Constraint
-import solver.constraints.IntConstraintFactory
-import solver.variables.IntVar
-import solver.variables.VariableFactory
-
-import static solver.search.strategy.IntStrategyFactory.lexico_LB
+import static org.chocosolver.solver.search.strategy.IntStrategyFactory.lexico_LB
 
 abstract class ChocoBaseScript extends Script {
   static s = new Solver()

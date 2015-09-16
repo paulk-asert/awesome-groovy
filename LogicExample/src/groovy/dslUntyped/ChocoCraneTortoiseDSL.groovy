@@ -1,13 +1,13 @@
 package dslUntyped
 
 import groovy.transform.Field
-import solver.Solver
-import solver.variables.IntVar
+import org.chocosolver.solver.Solver
+import org.chocosolver.solver.variables.IntVar
 
-import static solver.constraints.IntConstraintFactory.scalar
-import static solver.search.strategy.IntStrategyFactory.lexico_LB
-import static solver.variables.VariableFactory.bounded
-import static solver.variables.VariableFactory.fixed
+import static org.chocosolver.solver.constraints.IntConstraintFactory.scalar
+import static org.chocosolver.solver.search.strategy.IntStrategyFactory.lexico_LB
+import static org.chocosolver.solver.variables.VariableFactory.bounded
+import static org.chocosolver.solver.variables.VariableFactory.fixed
 
 @Field legCount = [:]
 @Field total = [:]

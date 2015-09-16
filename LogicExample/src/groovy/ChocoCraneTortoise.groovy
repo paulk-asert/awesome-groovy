@@ -1,13 +1,12 @@
-//@Grab('http://www.emn.fr/z-info/choco-repo/mvn/repository')
-//@Grab('choco:choco-solver:3.2.2')
-//@Grab('org.slf4j:slf4j-simple:1.7.6')
-//@GrabExclude('jgrapht:jgrapht')
+//@Grab('org.choco-solver:choco-solver:3.3.1')
+//@Grab('org.slf4j:slf4j-simple:1.7.12')
+//@GrabExclude('org.javabits.jgrapht:jgrapht-core')
 //@GrabExclude('args4j:args4j')
 //@GrabExclude('dk.brics.automaton:automaton')
-import solver.Solver
+import org.chocosolver.solver.Solver
 
-import static solver.constraints.IntConstraintFactory.*
-import static solver.variables.VariableFactory.*
+import static org.chocosolver.solver.constraints.IntConstraintFactory.*
+import static org.chocosolver.solver.variables.VariableFactory.*
 
 def s = new Solver()
 

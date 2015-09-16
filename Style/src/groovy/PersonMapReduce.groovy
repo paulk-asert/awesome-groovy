@@ -1,5 +1,7 @@
 import groovy.transform.Canonical
 
+//import java.util.stream.Collectors
+
 @Canonical
 class Person {
   String name
