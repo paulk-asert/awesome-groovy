@@ -6,13 +6,8 @@ package provider
 //@GrabExclude('dk.brics.automaton:automaton')
 import groovy.transform.Field
 import groovy.transform.TypeChecked
-
-import org.chocosolver.solver.Solver
+import org.chocosolver.solver.Model
 import org.chocosolver.solver.variables.IntVar
-
-import static org.chocosolver.solver.constraints.IntConstraintFactory.*
-import static org.chocosolver.solver.search.strategy.IntStrategyFactory.lexico_LB
-import static org.chocosolver.solver.variables.VariableFactory.*
 
 @Field List<String> animals = []
 @Field List<Integer> headCount = []
@@ -56,7 +51,7 @@ SeenHolder animals(SeenStopWord _types) {
 }
 
 def display(SolutionStopWord _solution) {
-  def s = new Solver()
+  def m = new Model()
   def legCalculator = { String name ->
     switch(name.toLowerCase()) {
       case ~/.*crane/: return 2
@@ -67,20 +62,19 @@ def display(SolutionStopWord _solution) {
 
   IntVar[] animalVars = animals.collect{
     int maxAnimals = legCount[0].intdiv(legCalculator(it))
-    bounded(it.toString(), 0, maxAnimals, s)
+    m.intVar(it.toString(), 0, maxAnimals, true)
   }
   int[] numCoeff = [1] * animals.size()
   int[] legCoeff = animals.collect(legCalculator)
-  s.post(scalar(animalVars, numCoeff, fixed(headCount[0], s)))
-  s.post(scalar(animalVars, legCoeff, fixed(legCount[0], s)))
-  s.set(lexico_LB(animalVars))
+  m.scalar(animalVars, numCoeff, '=', m.intVar(headCount[0])).post()
+  m.scalar(animalVars, legCoeff, '=', m.intVar(legCount[0])).post()
+  //m.set(lexico_LB(animalVars))
 
-  def more = s.findSolution()
+  def solver = m.solver
   def pretty = { it.value ? ["$it.name = $it.value"] : [] }
-  while (more) {
+  while (solver.solve()) {
     print "Solution: "
     println animalVars.collectMany(pretty).join(', ')
-    more = s.nextSolution()
   }
 }
 

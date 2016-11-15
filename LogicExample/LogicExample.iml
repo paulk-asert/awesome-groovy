@@ -8,29 +8,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="groovy-2.4.0.beta-4" level="application" />
     <orderEntry type="module-library">
-      <library name="Grab:slf4j-simple-1.7.6.jar">
+      <library name="Grab:choco-solver-3.3.1.jar">
         <CLASSES>
-          <root url="jar://$USER_HOME$/.groovy/grapes/org.slf4j/slf4j-simple/jars/slf4j-simple-1.7.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Grab:slf4j-api-1.7.6.jar">
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.groovy/grapes/org.slf4j/slf4j-api/jars/slf4j-api-1.7.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Grab:choco-solver-3.2.2.jar">
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.groovy/grapes/choco/choco-solver/jars/choco-solver-3.2.2.jar!/" />
+          <root url="jar://$USER_HOME$/.groovy/grapes/org.choco-solver/choco-solver/jars/choco-solver-3.3.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -46,9 +27,55 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Grab:slf4j-api-1.7.7.jar">
+      <library name="Grab:slf4j-api-1.7.12.jar">
         <CLASSES>
-          <root url="jar://$USER_HOME$/.groovy/grapes/org.slf4j/slf4j-api/jars/slf4j-api-1.7.7.jar!/" />
+          <root url="jar://$USER_HOME$/.groovy/grapes/org.slf4j/slf4j-api/jars/slf4j-api-1.7.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Grab:slf4j-simple-1.7.12.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.groovy/grapes/org.slf4j/slf4j-simple/jars/slf4j-simple-1.7.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="groovy-2.4.7" level="application" />
+    <orderEntry type="module-library">
+      <library name="Grab:choco-solver-4.0.0.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.groovy/grapes/org.choco-solver/choco-solver/jars/choco-solver-4.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Grab:choco-sat-1.0.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.groovy/grapes/org.choco-solver/choco-sat/jars/choco-sat-1.0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Grab:cpprof-java-1.2.0.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.groovy/grapes/com.github.cp-profiler/cpprof-java/jars/cpprof-java-1.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Grab:protobuf-java-2.6.1.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.groovy/grapes/com.google.protobuf/protobuf-java/bundles/protobuf-java-2.6.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -56,4 +83,3 @@
     </orderEntry>
   </component>
 </module>
-

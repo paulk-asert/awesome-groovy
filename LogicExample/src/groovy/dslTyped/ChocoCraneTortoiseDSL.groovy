@@ -1,18 +1,15 @@
 package dslTyped
-//@Grab('org.choco-solver:choco-solver:3.3.1')
+@Grab('org.choco-solver:choco-solver:4.0.0')
 //@Grab('org.slf4j:slf4j-simple:1.7.12')
-//@GrabExclude('org.javabits.jgrapht:jgrapht-core')
-//@GrabExclude('args4j:args4j')
-//@GrabExclude('dk.brics.automaton:automaton')
+@GrabExclude('org.javabits.jgrapht:jgrapht-core')
+@GrabExclude('args4j:args4j')
+@GrabExclude('dk.brics.automaton:automaton')
 import groovy.transform.Field
 import groovy.transform.TypeChecked
-
-import org.chocosolver.solver.Solver
+import org.chocosolver.solver.Model
 import org.chocosolver.solver.variables.IntVar
 
-import static org.chocosolver.solver.constraints.IntConstraintFactory.*
-import static org.chocosolver.solver.search.strategy.IntStrategyFactory.lexico_LB
-import static org.chocosolver.solver.variables.VariableFactory.*
+//import static org.chocosolver.solver.search.strategy.IntStrategyFactory.lexico_LB
 
 @Field List<Animal> _animals = []
 @Field List<Integer> headCount = []
@@ -65,24 +62,23 @@ TypesHolder animals(SeenStopWord _types) {
 }
 
 def display(SolutionStopWord _solution) {
-  def s = new Solver()
+  def m = new Model()
 
   IntVar[] animalVars = _animals.collect{
-    int maxAnimals = legCount[0].intdiv(it.legs)
-    bounded(it.toString(), 0, maxAnimals, s)
+  int maxAnimals = legCount[0].intdiv(it.legs)
+  m.intVar(it.toString(), 0, maxAnimals, true)
   }
   int[] numCoeff = [1] * _animals.size()
   int[] legCoeff = _animals.collect{ it.legs }
-  s.post(scalar(animalVars, numCoeff, fixed(headCount[0], s)))
-  s.post(scalar(animalVars, legCoeff, fixed(legCount[0], s)))
-  s.set(lexico_LB(animalVars))
+  m.scalar(animalVars, numCoeff, '+', m.intVar(headCount[0])).post()
+  m.scalar(animalVars, legCoeff, '+', m.intVar(legCount[0])).post()
+  //m.set(lexico_LB(animalVars))
 
-  def more = s.findSolution()
+  def solver = m.solver
   def pretty = { it.value ? ["$it.name = $it.value"] : [] }
-  while (more) {
+  while (solver.solve()) {
     print "Solution: "
     println animalVars.collectMany(pretty).join(', ')
-    more = s.nextSolution()
   }
 }
 

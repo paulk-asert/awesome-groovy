@@ -4,31 +4,29 @@
 //@GrabExclude('args4j:args4j')
 //@GrabExclude('dk.brics.automaton:automaton')
 
-import org.chocosolver.solver.Solver
+import org.chocosolver.solver.Model
 import org.chocosolver.solver.constraints.Constraint
-import org.chocosolver.solver.constraints.IntConstraintFactory
 import org.chocosolver.solver.variables.IntVar
-import org.chocosolver.solver.variables.VariableFactory
 
-import static org.chocosolver.solver.search.strategy.IntStrategyFactory.lexico_LB
+//import static org.chocosolver.solver.search.strategy.IntStrategyFactory.lexico_LB
 
 abstract class ChocoBaseScript extends Script {
-  static s = new Solver()
+  static m = new Model()
 
   public static IntVar bounded(String name, IntRange r) {
-    VariableFactory.bounded(name, r.from, r.to, s)
+    m.intVar(name, r.from, r.to, true)
   }
 
   public static boolean findSolution(IntVar... vars) {
-    s.set(lexico_LB(vars))
-    s.findSolution()
+    //m.set(lexico_LB(vars))
+    m.solver.solve()
   }
 
   public static IntVar scale(IntVar var, int cste) {
-    VariableFactory.scale(var, cste)
+    m.intScaleView(var, cste)
   }
 
   public static Constraint arithm(IntVar var1, String op1, IntVar var2, String op2, int cste) {
-    s.post(IntConstraintFactory.arithm(var1, op1, var2, op2, cste))
+    m.arithm(var1, op1, var2, op2, cste).post()
   }
 }

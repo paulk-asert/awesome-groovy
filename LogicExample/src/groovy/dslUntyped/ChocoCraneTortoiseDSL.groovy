@@ -1,13 +1,8 @@
 package dslUntyped
 
 import groovy.transform.Field
-import org.chocosolver.solver.Solver
+import org.chocosolver.solver.Model
 import org.chocosolver.solver.variables.IntVar
-
-import static org.chocosolver.solver.constraints.IntConstraintFactory.scalar
-import static org.chocosolver.solver.search.strategy.IntStrategyFactory.lexico_LB
-import static org.chocosolver.solver.variables.VariableFactory.bounded
-import static org.chocosolver.solver.variables.VariableFactory.fixed
 
 @Field legCount = [:]
 @Field total = [:]
@@ -40,18 +35,19 @@ def there(_are) {
 }
 
 def display(_solution) {
-  def s = new Solver()
+  def m = new Model()
   IntVar[] animalVars = legCount.collect { a, n ->
     int maxAnimals = total.legs.intdiv(n)
-    bounded(a, 0, maxAnimals, s)
+    m.intVar(a, 0, maxAnimals, true)
   }
   int[] numCoeff = [1] * legCount.size()
   int[] legCoeff = legCount.collect { it.value }
-  s.post(scalar(animalVars, numCoeff, fixed(total.animals, s)))
-  s.post(scalar(animalVars, legCoeff, fixed(total.legs, s)))
-  s.set(lexico_LB(animalVars))
+  m.scalar(animalVars, numCoeff, '=', m.intVar(total.animals)).post()
+  m.scalar(animalVars, legCoeff, '=', m.intVar(total.legs)).post()
+  //m.set(lexico_LB(animalVars))
 
-  if (s.findSolution())
+  def s = m.solver
+  if (s.solve())
     animalVars.each { println it }
   else
     println "No Solutions"

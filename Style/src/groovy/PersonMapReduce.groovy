@@ -9,9 +9,9 @@ class Person {
 }
 
 def people = [
-    new Person('Peter', 45),
-    new Person('Paul', 35),
-    new Person('Mary', 25)
+        new style.Person('Peter', 45),
+        new style.Person('Paul', 35),
+        new style.Person('Mary', 25)
 ]
 
 assert people

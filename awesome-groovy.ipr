@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ASMPluginConfiguration">
+    <asm skipDebug="false" skipFrames="false" skipCode="false" expandFrames="false" />
+    <groovy codeStyle="LEGACY" />
+  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
@@ -12,6 +16,19 @@
       <entry name="!?*.flex" />
       <entry name="!?*.kt" />
       <entry name="!?*.clj" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:StructuralProvider.groovy" />
+      <entry name="Bonus/src/resources:PrintfChecker.groovy" />
     </wildcardResourcePatterns>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="false">
@@ -23,22 +40,27 @@
   <component name="DependencyValidationManager">
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Bonus/Bonus.iml" filepath="$PROJECT_DIR$/Bonus/Bonus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Intro/Intro.iml" filepath="$PROJECT_DIR$/Intro/Intro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IntroJ/IntroJ.iml" filepath="$PROJECT_DIR$/IntroJ/IntroJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/LogicExample/LogicExample.iml" filepath="$PROJECT_DIR$/LogicExample/LogicExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Macro/Macro.iml" filepath="$PROJECT_DIR$/Macro/Macro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Polyglot/Polyglot.iml" filepath="$PROJECT_DIR$/Polyglot/Polyglot.iml" />
       <module fileurl="file://$PROJECT_DIR$/Style/Style.iml" filepath="$PROJECT_DIR$/Style/Style.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
   </component>
 </project>
-
